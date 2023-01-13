@@ -58,3 +58,13 @@ roles.file: /tmp/roles.yml
 
 #server:
 #  port: 8080 #- Port in which kafka-ui will run.
+
+spring.ldap.urls: localhost
+spring.ldap.dn.pattern: test
+spring.ldap.adminUser: test
+spring.ldap.adminPassword: test
+spring.ldap.userFilter.searchBase: test
+spring.ldap.userFilter.searchFilter: test
+oauth2.ldap.activeDirectory: true
+oauth2.ldap.aсtiveDirectory.domain: test
+auth.type: LDAP
