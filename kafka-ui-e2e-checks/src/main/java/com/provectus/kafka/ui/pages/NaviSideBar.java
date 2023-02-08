@@ -1,16 +1,15 @@
 package com.provectus.kafka.ui.pages;
 
+import static com.codeborne.selenide.Selenide.$x;
+import static com.provectus.kafka.ui.settings.BaseSource.CLUSTER_NAME;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-
 import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static com.codeborne.selenide.Selenide.$x;
-import static com.provectus.kafka.ui.settings.BaseSource.CLUSTER_NAME;
 
 public class NaviSideBar extends BasePage {
 
@@ -46,13 +45,6 @@ public class NaviSideBar extends BasePage {
         return this;
     }
 
-    public List<SelenideElement> getAllMenuButtons() {
-        expandCluster(CLUSTER_NAME);
-        return Stream.of(SideMenuOption.values())
-                .map(option -> $x(String.format(sideMenuOptionElementLocator, option.value)))
-                .collect(Collectors.toList());
-    }
-
     public enum SideMenuOption {
         DASHBOARD("Dashboard"),
         BROKERS("Brokers"),
@@ -67,5 +59,12 @@ public class NaviSideBar extends BasePage {
         SideMenuOption(String value) {
             this.value = value;
         }
+    }
+
+    public List<SelenideElement> getAllMenuButtons() {
+        expandCluster(CLUSTER_NAME);
+        return Stream.of(SideMenuOption.values())
+                .map(option -> $x(String.format(sideMenuOptionElementLocator, option.value)))
+                .collect(Collectors.toList());
     }
 }
